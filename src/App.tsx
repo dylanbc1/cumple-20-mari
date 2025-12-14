@@ -23,6 +23,19 @@ function App() {
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
   }
 
+  // Preload primera imagen
+  useEffect(() => {
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'image'
+    link.href = '/primera.jpeg'
+    document.head.appendChild(link)
+
+    return () => {
+      document.head.removeChild(link)
+    }
+  }, [])
+
   useEffect(() => {
     if (currentStep !== 2) {
       setShowScrollIndicator(false)
@@ -69,7 +82,13 @@ function App() {
           <div className="step step-1">
             <div className="step-1-layout">
               <div className="photo-container photo-featured">
-                <img src="/primera.jpeg" alt="Mari" />
+                <img 
+                  src="/primera.jpeg" 
+                  alt="Mari" 
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                />
               </div>
               <div className="content content-overlay">
                 <h1 className="title">El cumpleaños de la hermosa Mari</h1>
@@ -98,7 +117,12 @@ function App() {
                 </p>
               </div>
               <div className="photo-container photo-side">
-                <img src="/segunda.jpeg" alt="Mari" />
+                <img 
+                  src="/segunda.jpeg" 
+                  alt="Mari" 
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
             <div className="button-container">
@@ -116,7 +140,12 @@ function App() {
           <>
             <div className="step step-3">
               <div className="photo-container">
-                <img src="/barra.jpg" alt="Cantina La 15" />
+                <img 
+                  src="/barra.jpg" 
+                  alt="Cantina La 15" 
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="content">
                 <h1 className="title">Invitación especial</h1>
