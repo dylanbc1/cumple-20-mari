@@ -119,7 +119,7 @@ function App() {
                 <img src="/barra.jpg" alt="Cantina La 15" />
               </div>
               <div className="content">
-                <h1 className="title">Invitación Especial</h1>
+                <h1 className="title">Invitación especial</h1>
                 <p className="text">
                   Quiero que acompañes y celebres con <strong>Mari</strong> su tan esperado cumpleaños <strong>#20</strong>
                 </p>
