@@ -23,16 +23,24 @@ function App() {
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
   }
 
-  // Preload primera imagen
+  // Preload imágenes
   useEffect(() => {
-    const link = document.createElement('link')
-    link.rel = 'preload'
-    link.as = 'image'
-    link.href = '/primera.jpeg'
-    document.head.appendChild(link)
+    const link1 = document.createElement('link')
+    link1.rel = 'preload'
+    link1.as = 'image'
+    link1.href = '/primera.jpeg'
+    document.head.appendChild(link1)
+
+    // Preload segunda imagen cuando se está en step 0 (casi seguro que irá a step 1)
+    const link2 = document.createElement('link')
+    link2.rel = 'preload'
+    link2.as = 'image'
+    link2.href = '/segunda.jpeg'
+    document.head.appendChild(link2)
 
     return () => {
-      document.head.removeChild(link)
+      if (document.head.contains(link1)) document.head.removeChild(link1)
+      if (document.head.contains(link2)) document.head.removeChild(link2)
     }
   }, [])
 
@@ -120,8 +128,9 @@ function App() {
                 <img 
                   src="/segunda.jpeg" 
                   alt="Mari" 
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
+                  fetchPriority="high"
                 />
               </div>
             </div>
